@@ -175,9 +175,13 @@ def test_path_generation():
         p4 = cyl_path[2].position
         dist2 = p3.distance_to(p4)
         
-        # Segments should be roughly equal length
-        runner.test("Path continuity (uniform spacing)", 
-                    abs(dist1 - dist2) / dist1 < 0.01)
+        # Segments should be roughly equal length (avoid division by zero)
+        if dist1 > 1e-6:
+            runner.test("Path continuity (uniform spacing)", 
+                        abs(dist1 - dist2) / dist1 < 0.01)
+        else:
+            runner.test("Path continuity (uniform spacing)", False,
+                        "Segment length too small")
     
     return runner.report()
 
@@ -278,11 +282,11 @@ def test_perpendicular_nozzle():
     # For a sphere, normal should point radially from center
     sphere_path = generator.generate_spherical_path(radius=10, num_layers=10)
     if len(sphere_path) > 0:
-        # Check that normals are unit length
+        # Check that normals are unit length (tighter tolerance for accuracy)
         for i in range(min(10, len(sphere_path))):
             normal = sphere_path[i].normal
             length = math.sqrt(normal.x**2 + normal.y**2 + normal.z**2)
-            if abs(length - 1.0) > 0.01:
+            if abs(length - 1.0) > 0.001:  # Tighter tolerance for unit vectors
                 runner.test(f"Sphere normal {i} is unit length", False, 
                            f"Length = {length}")
                 break

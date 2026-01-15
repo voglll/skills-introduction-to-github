@@ -41,7 +41,7 @@ def visualize_cylinder_cross_section():
     for i in range(num_points):
         t = i / num_points
         z = t * height
-        theta = t * 10 * math.pi  # 5 turns
+        theta = t * 5 * 2 * math.pi  # 5 complete turns
         
         x = radius * math.cos(theta)
         
@@ -157,8 +157,8 @@ def visualize_nozzle_orientation():
     print("  Optimal material deposition on all surfaces")
     print()
     print("      ↓     ↘     →")
-    print("     === ⟍  === ⟍ ===  ← Nozzle adapts")
-    print("    /   ⟍ /   ⟍/   \\")
+    print("     === \\  === \\ ===  ← Nozzle adapts")
+    print("    /   \\ /   \\/   \\")
     print("   /     /     /     \\  ← Good adhesion everywhere")
     print("  /_____/_____/_______\\")
     print()

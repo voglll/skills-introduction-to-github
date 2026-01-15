@@ -25,7 +25,7 @@ class Vector3D:
     def normalize(self) -> 'Vector3D':
         """Return normalized vector."""
         length = math.sqrt(self.x**2 + self.y**2 + self.z**2)
-        if length == 0:
+        if length < 1e-10:  # Use epsilon for floating point comparison
             return Vector3D(0, 0, 1)  # Default to Z-up
         return Vector3D(self.x/length, self.y/length, self.z/length)
     
