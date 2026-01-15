@@ -59,6 +59,34 @@ Branches allow you to separate your work from the `main` branch. In other words,
 
 6. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
 
+## 5-Axis DED Slicer
+
+This repository now also includes a **5-axis Directed Energy Deposition (DED) slicer** implementation! This advanced slicing tool generates continuous toolpaths for additive manufacturing without requiring overlays, maintaining the nozzle perpendicular (90°) to the printing surface at all times.
+
+### Key Features
+- **Continuous Path Generation**: No retractions or overlays needed
+- **5-Axis Control**: Full X, Y, Z, A, B axis support
+- **Normal-Aligned Nozzle**: Always perpendicular to surface
+- **Multiple Geometries**: Cylinders, spheres, and cones supported
+
+### Quick Start
+
+```bash
+# Run the slicer
+python3 slicer_5axis.py
+
+# Run examples
+python3 examples.py
+
+# Run tests
+python3 test_slicer.py
+
+# Visualize concepts
+python3 visualize.py
+```
+
+See [SLICER_README.md](SLICER_README.md) for detailed documentation.
+
 <footer>
 
 <!--
